@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>📦 Product Dashboard</title>
+    <link rel="stylesheet" href="sp2styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<header>
+    <h1>📦 Product Dashboard</h1>
+    <button onclick="toggleTheme()" class="theme-toggle">🌓</button>
+    <nav>
+        <a href="productsSp.html">Products</a>
+        <a href="customers.html">Customers</a>
+    </nav>
+</header>
+
+<main>
+    <section class="card">
+        <h2>➕ Add New Product</h2>
+        <form id="productForm">
+            <input type="text" id="name" placeholder="Product Name" required>
+            <input type="text" id="category" placeholder="Category" required>
+            <input type="number" id="price" placeholder="Price" required>
+            <button type="submit">Save Product</button>
+        </form>
+    </section>
+
+    <section class="card">
+        <h2>Explore Products</h2>
+        <div class="btn-group">
+            <button onclick="fetchData('/api/products')">🔄 All Products</button>
+            <button onclick="fetchData('/api/products/filter')">🔍 Price > 500</button>
+            <button onclick="fetchData('/api/products/map', true)">📝 Names</button>
+            <button onclick="fetchData('/api/products/sorted')">↕️ Sort by Price</button>
+            <button onclick="fetchData('/api/products/group-by-category', true)">📂 Group</button>
+            <button onclick="drawAvgPriceChart()">📊 Avg Price Graph</button>
+            <button onclick="fetchData('/api/products/summary', true)">📈 Summary</button>
+        </div>
+    </section>
+
+    <section class="card" id="output"></section>
+
+    <section class="card">
+        <canvas id="priceChart" width="400" height="200"></canvas>
+    </section>
+</main>
+
+<script src="productScript.js"></script>
+<script src="chart.js"></script>
+</body>
+</html>
